@@ -1,0 +1,42 @@
+{
+  "name": "ULHPC/backuppc",
+  "version": "0.0.1",
+  "author": "Hyacinthe Cartiaux",
+  "mail": "hyacinthe.cartiaux@uni.lu",
+  "summary": "Configure and manage BackupPC server and clients",
+  "description": "Configure and manage BackupPC server and clients",
+  "license": "Apache-2.0",
+  "source": "https://github.com/ULHPC/puppet-backuppc",
+  "docs_project": "ulhpc-puppet-backuppc",
+  "project_page": "https://github.com/ULHPC/puppet-backuppc",
+  "issues_url": "https://github.com/ULHPC/puppet-backuppc/issues",
+  "forge_url": "https://forge.puppetlabs.com/ULHPC/backuppc",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">=4.2.2 <5.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    }
+  ],
+  "tags": ["backuppc", "rsync", "backup"]
+}
