@@ -4,7 +4,7 @@
 
 [![Puppet Forge](http://img.shields.io/puppetforge/v/ULHPC/backuppc.svg)](https://forge.puppetlabs.com/ULHPC/backuppc)
 [![License](http://img.shields.io/:license-Apache2.0-blue.svg)](LICENSE)
-![Supported Platforms](http://img.shields.io/badge/platform-debian-lightgrey.svg)
+![Supported Platforms](http://img.shields.io/badge/platform-redhat|centos-lightgrey.svg)
 [![Documentation Status](https://readthedocs.org/projects/ulhpc-puppet-backuppc/badge/?version=latest)](https://readthedocs.org/projects/ulhpc-puppet-backuppc/?badge=latest)
 [![By ULHPC](https://img.shields.io/badge/by-ULHPC-blue.svg)](http://hpc.uni.lu)
 
