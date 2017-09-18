@@ -4,7 +4,7 @@
 
 [![Puppet Forge](http://img.shields.io/puppetforge/v/ULHPC/backuppc.svg)](https://forge.puppetlabs.com/ULHPC/backuppc)
 [![License](http://img.shields.io/:license-Apache2.0-blue.svg)](LICENSE)
-![Supported Platforms](http://img.shields.io/badge/platform-debian-lightgrey.svg)
+![Supported Platforms](http://img.shields.io/badge/platform-redhat|centos-lightgrey.svg)
 [![Documentation Status](https://readthedocs.org/projects/ulhpc-puppet-backuppc/badge/?version=latest)](https://readthedocs.org/projects/ulhpc-puppet-backuppc/?badge=latest)
 
 Configure and manage BackupPC server and clients
@@ -35,6 +35,9 @@ See `docs/contributing.md` for more details on the steps you shall follow to hav
 See [`metadata.json`](metadata.json). In particular, this module depends on 
 
 * [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)
+* [stahnma/epel](https://forge.puppetlabs.com/stahnma/epel)
+* [ULHPC/sudo](https://forge.puppetlabs.com/ULHPC/sudo)
+* [puppetlabs/concat](https://forge.puppetlabs.com/puppetlabs/concat)
 
 ## Overview and Usage
 
