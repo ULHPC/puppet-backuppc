@@ -1,6 +1,6 @@
 {
   "name": "ULHPC/backuppc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Hyacinthe Cartiaux",
   "mail": "hyacinthe.cartiaux@uni.lu",
   "summary": "Configure and manage BackupPC server and clients",
@@ -43,5 +43,9 @@
       ]
     }
   ],
-  "tags": ["backuppc", "rsync", "backup"]
+  "tags": [
+    "backuppc",
+    "rsync",
+    "backup"
+  ]
 }
