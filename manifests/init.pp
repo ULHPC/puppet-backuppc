@@ -184,7 +184,6 @@ inherits backuppc::params
     info ("Configuring backuppc (with ensure = ${ensure})")
 
     case $::operatingsystem {
-        /(?i-mx:ubuntu|debian)/:        { include ::backuppc::common::debian }
         /(?i-mx:centos|fedora|redhat)/: { include ::backuppc::common::redhat }
         default: {
             fail("Module ${module_name} is not supported on ${::operatingsystem}")

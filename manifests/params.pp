@@ -194,16 +194,6 @@ Content-Type: text/plain; charset="utf-8"
   ###########################################
 
   case $::operatingsystem {
-    /(Ubuntu|Debian)/: {
-      $package          = 'backuppc'
-      $service          = 'backuppc'
-      $config_directory = '/etc/backuppc'
-      $www_config_file  = '/etc/apache2/conf.d/backuppc.conf'
-      $username         = 'backuppc'
-      $home             = '/var/lib/backuppc'
-      $comment          = 'BackupPC User'
-      $shell            = '/sbin/nologin'
-    }
     /(RedHat|CentOS)/: {
       $package           = 'backuppc'
       $service           = 'backuppc'
