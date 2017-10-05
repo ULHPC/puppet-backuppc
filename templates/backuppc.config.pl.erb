@@ -902,7 +902,7 @@ $Conf{SmbShareName} = '<%= scope["backuppc::smbsharename"] %>';
 #
 # This setting only matters if $Conf{XferMethod} = 'smb'.
 #
-$Conf{SmbShareUserName} = <%= scope["backuppc::smbshareusername"] %>;
+$Conf{SmbShareUserName} = '<%= scope["backuppc::smbshareusername"] %>';
 
 #
 # Smbclient share password.  This is passed to smbclient via its PASSWD
@@ -914,7 +914,7 @@ $Conf{SmbShareUserName} = <%= scope["backuppc::smbshareusername"] %>;
 #
 # This setting only matters if $Conf{XferMethod} = 'smb'.
 #
-$Conf{SmbSharePasswd} = <%= scope["backuppc::smbsharepasswd"] %>;
+$Conf{SmbSharePasswd} = '<%= scope["backuppc::smbsharepasswd"] %>';
 
 #
 # Full path for smbclient. Security caution: normal users should not
@@ -976,7 +976,7 @@ $Conf{SmbClientIncrCmd} = '<%= scope["backuppc::smbclientincrcmd"] %>';
 # needs to be a full path and you can't include shell syntax like
 # redirection and pipes; put that in a script if you need it.
 #
-$Conf{SmbClientRestoreCmd} = '<%= scope["backuppc::smbclientrestorecmd"] %>'
+$Conf{SmbClientRestoreCmd} = '<%= scope["backuppc::smbclientrestorecmd"] %>';
 
 ###########################################################################
 # Tar Configuration
