@@ -24,4 +24,6 @@ class backuppc::common::redhat inherits backuppc::common {
     include             => 'https://copr.fedorainfracloud.org/coprs/hobbes1069/BackupPC/repo/epel-7/hobbes1069-BackupPC-epel-7.repo',
   }
 
+  Yumrepo['hobbes1069-BackupPC'] -> Package[$backuppc::params::package]
+
 }
