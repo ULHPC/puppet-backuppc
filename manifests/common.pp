@@ -20,9 +20,17 @@ class backuppc::common {
 
   if (!defined(Class['::sudo'])) {
     class { '::sudo':
-        ensure => $backuppc::ensure,
+      ensure => $backuppc::ensure,
     }
   }
+
+  class { 'apache':
+    package_ensure => $backuppc::ensure,
+    manage_user    => false,
+    user           => $backuppc::params::username,
+    group          => $backuppc::params::username
+  }
+
 
   package { $backuppc::params::package:
     ensure => $backuppc::ensure,
