@@ -249,10 +249,10 @@ Content-Type: text/plain; charset="utf-8"
     default => '0640',
   }
   $configfile_owner = $::operatingsystem ? {
-    default => 'root',
+    default => $username,
   }
   $configfile_group = $::operatingsystem ? {
-    default => 'root',
+    default => 'apache',
   }
 
 }
