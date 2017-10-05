@@ -17,7 +17,7 @@ class backuppc::user(
     String $server_sshkey_type    = '',
     String $server_sshkey_comment = '',
     String $server_sshkey         = '',
-    String $ensure = $backuppc::params::ensure
+    String $ensure                = $backuppc::params::ensure
 ) {
 
   # Load the variables used in this module. Check the params.pp file

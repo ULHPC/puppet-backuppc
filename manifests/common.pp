@@ -40,6 +40,20 @@ class backuppc::common {
     enable => $service_ensure,
   }
 
+  if ($backuppc::home != $backuppc::params::home)
+  {
+    exec { "mkdir -p ${backuppc::home} ${backuppc::params::home}":
+      unless => "test -d ${backuppc::home} -a -d ${backuppc::params::home}",
+    }
+    -> mount { $backuppc::params::home:
+      ensure  => mounted,
+      device  => $backuppc::home,
+      fstype  => 'none',
+      options => 'rw,bind',
+    }
+    -> Class['::backuppc::user']
+  }
+
   # Main configuration file
   file {
     $backuppc::params::config_file:
