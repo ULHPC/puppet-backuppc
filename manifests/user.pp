@@ -39,6 +39,17 @@ class backuppc::user(
       ensure  => $ensure,
       content => "${backuppc::params::username}  ALL=NOPASSWD: /usr/bin/rsync --server --sender *\n",
     }
+    @@concat::fragment{ $::fqdn:
+        target  => $backuppc::params::host_file,
+        content => "${::fqdn} 0 ${backuppc::params::username}\n",
+        tag     => ['backuppc'],
+    }
+  } else {
+    @@concat::fragment{ 'localhost':
+        target  => $backuppc::params::host_file,
+        content => "localhost 0 ${backuppc::params::username}\n",
+        tag     => ['backuppc'],
+    }
   }
 
   if ($ensure == 'present')
@@ -54,12 +65,6 @@ class backuppc::user(
       owner   => $backuppc::params::username,
       group   => $backuppc::params::username,
       require => User[$backuppc::params::username];
-    }
-
-    @@concat::fragment{ $::hostname:
-        target  => $backuppc::params::host_file,
-        content => "${::hostname} 0 ${backuppc::params::username}\n",
-        tag     => ['backuppc'],
     }
 
     if (! empty("${server_sshkey}${server_sshkey_type}${server_sshkey_comment}"))
