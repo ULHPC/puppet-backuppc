@@ -56,7 +56,7 @@ class backuppc::user(
       require => User[$backuppc::params::username];
     }
 
-    @concat::fragment{ $::hostname:
+    @@concat::fragment{ $::hostname:
         target  => $backuppc::params::host_file,
         content => "${::hostname} 0 ${backuppc::params::username}\n",
         tag     => ['backuppc'],
