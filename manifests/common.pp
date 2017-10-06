@@ -24,11 +24,11 @@ class backuppc::common {
     }
   }
 
-  class { 'apache':
+  class { '::apache':
     package_ensure => $backuppc::ensure,
     manage_user    => false,
     user           => $backuppc::params::username,
-    group          => $backuppc::params::username
+    group          => $backuppc::params::username,
   }
 
 
@@ -70,7 +70,7 @@ class backuppc::common {
       owner   => $backuppc::params::configfile_owner,
       group   => $backuppc::params::configfile_group,
       content => template('backuppc/backuppc.config.pl.erb'),
-      notify => Service[$backuppc::params::service]
+      notify  => Service[$backuppc::params::service],
   }
 
   # Hostfile
@@ -84,7 +84,7 @@ class backuppc::common {
   concat::fragment{ 'host_file_header':
     target => $backuppc::params::host_file,
     source => 'puppet:///modules/backuppc/hosts',
-    notify => Service[$backuppc::params::service]
+    notify => Service[$backuppc::params::service],
   }
 
   Concat::Fragment <<| tag == 'backuppc' |>>

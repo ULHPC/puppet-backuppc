@@ -43,14 +43,14 @@ class backuppc::user(
         target  => $backuppc::params::host_file,
         content => "${::fqdn} 0 ${backuppc::params::username}\n",
         tag     => ['backuppc'],
-        notify  => Service[$backuppc::params::service]
+        notify  => Service[$backuppc::params::service],
     }
   } else {
     @@concat::fragment{ 'localhost':
         target  => $backuppc::params::host_file,
         content => "localhost 0 ${backuppc::params::username}\n",
         tag     => ['backuppc'],
-        notify  => Service[$backuppc::params::service]
+        notify  => Service[$backuppc::params::service],
     }
   }
 
