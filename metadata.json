@@ -1,6 +1,6 @@
 {
   "name": "ULHPC/backuppc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "UL HPC Team",
   "mail": "hyacinthe.cartiaux@uni.lu",
   "summary": "Configure and manage BackupPC server and clients",
