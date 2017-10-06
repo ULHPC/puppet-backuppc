@@ -17,7 +17,7 @@ class backuppc::user(
     String $server_sshkey_type    = '',
     String $server_sshkey_comment = '',
     String $server_sshkey         = '',
-    String $ensure = $backuppc::params::ensure
+    String $ensure                = $backuppc::params::ensure
 ) {
 
   # Load the variables used in this module. Check the params.pp file
@@ -39,6 +39,19 @@ class backuppc::user(
       ensure  => $ensure,
       content => "${backuppc::params::username}  ALL=NOPASSWD: /usr/bin/rsync --server --sender *\n",
     }
+    @@concat::fragment{ $::fqdn:
+        target  => $backuppc::params::host_file,
+        content => "${::fqdn} 0 ${backuppc::params::username}\n",
+        tag     => ['backuppc'],
+        notify  => Service[$backuppc::params::service],
+    }
+  } else {
+    @@concat::fragment{ 'localhost':
+        target  => $backuppc::params::host_file,
+        content => "localhost 0 ${backuppc::params::username}\n",
+        tag     => ['backuppc'],
+        notify  => Service[$backuppc::params::service],
+    }
   }
 
   if ($ensure == 'present')
@@ -54,12 +67,6 @@ class backuppc::user(
       owner   => $backuppc::params::username,
       group   => $backuppc::params::username,
       require => User[$backuppc::params::username];
-    }
-
-    @concat::fragment{ $::hostname:
-        target  => $backuppc::params::host_file,
-        content => "${::hostname} 0 ${backuppc::params::username}\n",
-        tag     => ['backuppc'],
     }
 
     if (! empty("${server_sshkey}${server_sshkey_type}${server_sshkey_comment}"))

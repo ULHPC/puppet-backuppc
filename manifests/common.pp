@@ -20,9 +20,17 @@ class backuppc::common {
 
   if (!defined(Class['::sudo'])) {
     class { '::sudo':
-        ensure => $backuppc::ensure,
+      ensure => $backuppc::ensure,
     }
   }
+
+  class { '::apache':
+    package_ensure => $backuppc::ensure,
+    manage_user    => false,
+    user           => $backuppc::params::username,
+    group          => $backuppc::params::username,
+  }
+
 
   package { $backuppc::params::package:
     ensure => $backuppc::ensure,
@@ -40,6 +48,20 @@ class backuppc::common {
     enable => $service_ensure,
   }
 
+  if ($backuppc::home != $backuppc::params::home)
+  {
+    exec { "mkdir -p ${backuppc::home} ${backuppc::params::home}":
+      unless => "test -d ${backuppc::home} -a -d ${backuppc::params::home}",
+    }
+    -> mount { $backuppc::params::home:
+      ensure  => mounted,
+      device  => $backuppc::home,
+      fstype  => 'none',
+      options => 'rw,bind',
+    }
+    -> Class['::backuppc::user']
+  }
+
   # Main configuration file
   file {
     $backuppc::params::config_file:
@@ -48,6 +70,7 @@ class backuppc::common {
       owner   => $backuppc::params::configfile_owner,
       group   => $backuppc::params::configfile_group,
       content => template('backuppc/backuppc.config.pl.erb'),
+      notify  => Service[$backuppc::params::service],
   }
 
   # Hostfile
@@ -61,6 +84,7 @@ class backuppc::common {
   concat::fragment{ 'host_file_header':
     target => $backuppc::params::host_file,
     source => 'puppet:///modules/backuppc/hosts',
+    notify => Service[$backuppc::params::service],
   }
 
   Concat::Fragment <<| tag == 'backuppc' |>>

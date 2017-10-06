@@ -21,6 +21,9 @@
 # @param allowed_hosts [Array] Default: [].
 #          List of IP / hostname allowed on the web interface
 #
+# @param home [String] Default: '/var/lib/BackupPC'.
+#          Location of the backuppc home directory
+#
 # === Requires
 #
 # n/a
@@ -56,6 +59,7 @@
 class backuppc(
     String  $admin_password,
     String  $ensure                    = $backuppc::params::ensure,
+    String  $home                      = $backuppc::params::home,
     Array   $allowed_hosts             = $backuppc::params::allowed_hosts,
     Array   $wakeupschedule            = $backuppc::params::wakeupschedule,
     Integer $maxbackups                = $backuppc::params::maxbackups,
@@ -184,7 +188,6 @@ inherits backuppc::params
     info ("Configuring backuppc (with ensure = ${ensure})")
 
     case $::operatingsystem {
-        /(?i-mx:ubuntu|debian)/:        { include ::backuppc::common::debian }
         /(?i-mx:centos|fedora|redhat)/: { include ::backuppc::common::redhat }
         default: {
             fail("Module ${module_name} is not supported on ${::operatingsystem}")

@@ -1,7 +1,7 @@
 {
   "name": "ULHPC/backuppc",
-  "version": "0.0.2",
-  "author": "Hyacinthe Cartiaux",
+  "version": "0.0.3",
+  "author": "UL HPC Team",
   "mail": "hyacinthe.cartiaux@uni.lu",
   "summary": "Configure and manage BackupPC server and clients",
   "description": "Configure and manage BackupPC server and clients",
@@ -27,6 +27,10 @@
     {
       "name": "puppetlabs/concat",
       "version_requirement": ">=1.2.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/apache",
+      "version_requirement": ">=2.2.0 < 3.0.0"
     }
   ],
   "operatingsystem_support": [
